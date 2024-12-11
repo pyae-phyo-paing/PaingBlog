@@ -8,7 +8,8 @@ Route::get('/blog-post/{id}',[App\Http\Controllers\FrontController::class, 'blog
 
 Route::group(['prefix'=>'backend','as'=>'backend.'], function(){
     Route::get('/',[App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin-dashboard');
-    Route::resource('post-admin',App\Http\Controllers\Admin\PostAdminController::class);
+    Route::resource('posts',App\Http\Controllers\Admin\PostController::class);
+    Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
 });
 
 Auth::routes();

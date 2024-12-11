@@ -5,16 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
-class PostAdminController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy('id','DESC')->paginate(5);
-        return view('admin.post-admin',compact('posts'));
+        $posts = Post::orderBy('id')->paginate(7);
+        return view('admin.posts.index',compact('posts'));
     }
 
     /**
@@ -22,7 +23,8 @@ class PostAdminController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.posts.create',compact('categories'));
     }
 
     /**
@@ -30,7 +32,11 @@ class PostAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $posts = Post::create($request->all());
+        $posts->save();
+
+        return redirect()->route('backend.posts.index');
     }
 
     /**

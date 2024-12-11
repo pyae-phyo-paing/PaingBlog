@@ -3,10 +3,10 @@
 <div class="container-fluid px-4">
     <div class="my-3">
         <h1 class="mt-4 d-inline">Posts</h1>
-        <a href="" class="btn btn-primary float-end">Create Post</a>
+        <a href="{{route('backend.posts.create')}}" class="btn btn-primary float-end">Create Post</a>
     </div>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Posts</a></li>
+        <li class="breadcrumb-item"><a href="{{route('backend.posts.index')}}">Posts</a></li>
         <li class="breadcrumb-item active">PaingBlog</li>
     </ol>
     <div class="card mb-4">
@@ -21,7 +21,6 @@
                         <th>No.</th>
                         <th>Title</th>
                         <th>Description</th>
-                        <th>Category</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -29,8 +28,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Title</th>
-                        <th>User</th>
-                        <th>Category</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -42,7 +40,6 @@
                         <tr>
                             <td>{{$j++}}</td>
                             <td>{{$post->title}}</td>
-                            <td>{{$post->user_id}}</td>
                             <td>{{$post->category_id}}</td>
                             <td>
                                 <a href="" class="btn btn-sm btn-warning">Edit</a>
