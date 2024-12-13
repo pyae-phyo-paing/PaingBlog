@@ -20,7 +20,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Title</th>
-                        <th>Description</th>
+                        <th>Category</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,7 +28,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Title</th>
-                        <th>Description</th>
+                        <th>Category</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
