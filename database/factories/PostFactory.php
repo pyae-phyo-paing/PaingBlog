@@ -20,7 +20,8 @@ class PostFactory extends Factory
             'title' => $this->faker->word,
             'image' => $this->faker->imageUrl,
             'description' => $this->faker->paragraph,
-            'category_id' =>rand(1,10)
+            'category_id' =>rand(1,10),
+            'user_id' =>rand(1,2)
         ];
     }
 }

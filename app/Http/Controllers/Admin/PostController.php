@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         // dd($request);
         $posts = Post::create($request->all());
-
+        // $posts->user_id=1;
         //upload file
         $file_name = time().'.'.$request->image->extension(); 
 
