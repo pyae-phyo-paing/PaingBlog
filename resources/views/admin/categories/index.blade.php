@@ -40,8 +40,8 @@
                             <td>{{$j++}}</td>
                             <td>{{$category->name}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{route('backend.categories.edit',$category->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$category->id}}">Delete</button>
                             </td>
                         </tr>
                     @endforeach
@@ -51,4 +51,42 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-light">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2>Are you sure delete?</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="" id="deleteForm" method="post">
+            @csrf 
+            @method('delete')
+            <button type="submit" class="btn btn-danger">Yes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('tbody').on('click','.delete',function(){
+                // alert('hello');
+                let id = $(this).data('id');
+                // console.log(id);
+                $('#deleteForm').attr('action',`categories/${id}`);
+
+                $('#deleteModal').modal('show');
+            })
+        })
+    </script>
 @endsection
