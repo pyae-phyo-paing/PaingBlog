@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id')->paginate(7);
+        $posts = Post::orderBy('id','DESC')->paginate(7);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -72,9 +73,23 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostUpdateRequest $request, string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->update($request->all());
+
+        if($request->hasFile('image')){
+            $file_name = time().'.'.$request->image->extension();
+            $upload = $request->image->move(public_path('images/posts/'),$file_name);
+            if($upload){
+                $post->image = "/images/posts/".$file_name;
+            }
+        }else{
+            $post->image = $request->old_image;
+        }
+
+        $post->save();
+        return redirect()->route('backend.posts.index');
     }
 
     /**

@@ -20,7 +20,9 @@
                     <tr>
                         <th>No.</th>
                         <th>Title</th>
+                        <th>Image</th>
                         <th>Category</th>
+                        <th>User</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,7 +30,9 @@
                     <tr>
                         <th>No.</th>
                         <th>Title</th>
+                        <th>Image</th>
                         <th>Category</th>
+                        <th>User</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -40,7 +44,11 @@
                         <tr>
                             <td>{{$j++}}</td>
                             <td>{{$post->title}}</td>
-                            <td>{{$post->category_id}}</td>
+                            <td>
+                                <img src="{{$post->image}}" alt="" width="50px">
+                            </td>
+                            <td>{{$post->category->name}}</td>
+                            <td>{{$post->user->name}}</td>
                             <td>
                                 <a href="{{route('backend.posts.edit',$post->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$post->id}}">Delete</button>
