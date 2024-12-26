@@ -84,11 +84,15 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
+                                @foreach($categories as $category)
                                     <ul class="list-unstyled mb-0">
                                        
-                                        <li><a href="#!">{{$post->category_id}}</a></li>
+                                        
+                                            <li><a href="#!">{{$category->name}}</a></li>
+                                        
                                         
                                     </ul>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

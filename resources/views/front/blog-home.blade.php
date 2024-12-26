@@ -62,8 +62,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        @foreach($posts as $post)
-                                        <li><a href="#!">{{$post->category_id}}</a></li>
+                                        @foreach($categories as $category)
+                                        <li><a href="{{route('blog-post',$post->id)}}">{{$category->name}}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>

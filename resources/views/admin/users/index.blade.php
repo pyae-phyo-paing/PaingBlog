@@ -21,6 +21,7 @@
                         <th>No.</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Profile</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@
                         <th>No.</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Profile</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -42,6 +44,13 @@
                             <td>{{$j++}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td>
+                                <img src="{{$user->profile}}" alt="" width="50">
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class FrontController extends Controller
 {
@@ -11,12 +12,14 @@ class FrontController extends Controller
     {
         $posts = Post::orderBy('id','DESC')->paginate(4);
         $latestpost = Post::orderBy('id','DESC')->first();
-        return view('front.blog-home',compact('posts','latestpost'));
+        $categories = Category::all();
+        return view('front.blog-home',compact('posts','latestpost','categories'));
     }
 
     public function blogPost($id)
     {
         $post = Post::find($id);
-        return view('front.blog-post',compact('post'));
+        $categories = Category::all();
+        return view('front.blog-post',compact('post','categories'));
     }
 }
