@@ -11,10 +11,10 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">Welcome to Paing Blog!</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on {{$post->created_at->format('F j, Y')}} by Start Bootstrap</div>
+                            <div class="text-muted fst-italic mb-2">Posted on {{$post->created_at->format('F j, Y')}} by {{$post->user->name}}</div>
                             <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="{{route('category-post',$post->category->id)}}">{{$post->category->name}}</a>
+                            
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="{{$post->image}}" alt="..." /></figure>
@@ -88,7 +88,7 @@
                                     <ul class="list-unstyled mb-0">
                                        
                                         
-                                            <li><a href="#!">{{$category->name}}</a></li>
+                                            <li><a href="{{route('category-post',$category->id)}}">{{$category->name}}</a></li>
                                         
                                         
                                     </ul>

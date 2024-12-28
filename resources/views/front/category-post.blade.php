@@ -14,19 +14,9 @@
             <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-8">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{{$latestpost->image}}" alt="..." /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">{{$latestpost->created_at->format('F j, Y')}}</div>
-                            <h2 class="card-title">{{$latestpost->title}}</h2>
-                            <p class="card-text">{{$latestpost->description}}</p>
-                            <a class="btn btn-primary" href="{{route('blog-post',$latestpost->id)}}">Read more →</a>
-                        </div>
-                    </div>
                     <!-- Nested row for non-featured blog posts-->
                     <div class="row">
-                        @foreach($posts as $post)
+                        @foreach($categoryPosts as $post)
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
@@ -41,7 +31,7 @@
                         </div>
                         @endforeach
                     </div>
-                    {{$posts->links()}}
+                    {{$categoryPosts->links()}}
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">

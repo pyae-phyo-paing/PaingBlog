@@ -3,7 +3,7 @@
 <div class="container-fluid px-4">
     <div class="my-3">
         <h1 class="mt-4 d-inline">Users</h1>
-        <a href="{{route('backend.posts.create')}}" class="btn btn-primary float-end">Create User</a>
+        <a href="{{route('backend.users.create')}}" class="btn btn-primary float-end">Create User</a>
     </div>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{route('backend.users.index')}}">Users</a></li>
@@ -22,6 +22,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Profile</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -31,6 +32,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Profile</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -47,9 +49,11 @@
                             <td>
                                 <img src="{{$user->profile}}" alt="" width="50">
                             </td>
+                            <td>{{$user->role}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{route('backend.users.edit',$user->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$user->id}}">Delete</button>
+                                <a href="{{route('backend.user.profile',$user->id)}}" class="btn btn-sm btn-primary">View Profile</a>
                             </td>
                         </tr>
                     @endforeach
@@ -61,5 +65,40 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">Delete</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2>Are you sure delete?</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <form action="" id="deleteForm" method="post">
+            @csrf 
+            @method('delete')
+            <button type="submit" class="btn btn-danger">Yes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('tbody').on('click','.delete',function(){
+                // alert ('Hello')
+                let id = $(this).data('id');
+                // console.log(id);
 
+                $('#deleteModal').modal('show');
+                $('#deleteForm').attr('action',`users/${id}`);
+            })
+        })
+    </script>
 @endsection

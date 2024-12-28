@@ -10,10 +10,11 @@ class FrontController extends Controller
 {
     public function blogHome()
     {
-        $posts = Post::orderBy('id','DESC')->paginate(4);
-        $latestpost = Post::orderBy('id','DESC')->first();
+        $latestpost = Post::latest()->first();
+        $id = $latestpost->id;
+        $posts = Post::where('id','!=',$id)->orderBy('id','DESC')->paginate(4);
         $categories = Category::all();
-        return view('front.blog-home',compact('posts','latestpost','categories'));
+        return view('front.blog-home',compact('posts','categories','latestpost'));
     }
 
     public function blogPost($id)
@@ -22,4 +23,11 @@ class FrontController extends Controller
         $categories = Category::all();
         return view('front.blog-post',compact('post','categories'));
     }
+
+    public function categoryPost($categoryId){
+        $categoryPosts = Post::where('category_id',$categoryId)->orderBy('id','DESC')->paginate(8);
+        $categories = Category::all();
+        return view('front.category-post',compact('categoryPosts','categories'));
+    }
+
 }

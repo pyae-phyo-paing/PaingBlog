@@ -68,7 +68,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <input type="hidden" name="user_id" value="1">
                 <button type="submit" class="btn btn-primary w-100">Update</button>
             </form>
         </div>
